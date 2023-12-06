@@ -1,0 +1,115 @@
+<div class="sidenav-overlay">
+  <div id="sideCart" class="sidenav sm:w-[445px] md:w-6/12 lg:w-[445px]">
+
+    <div class="sidenav__header">
+      <div class="sidenav__header-title">
+        Shopping Cart
+      </div>
+      <div class="sidenav__header-close">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+      </div>
+    </div>
+    <div class="sidenav-header-loader">
+      {% render 'icon-cart-header-loader' %}
+    </div>
+    {% form 'cart'
+      , cart
+      , class: 'cart-drawer-form' %}
+      {% if cart.item_count > 0 %}
+        <div class="sidenav__items">
+          {% for item in cart.items %}
+            <div
+              class="sidenav__item"
+              data-index="{{ forloop.index }}"
+              data-line-item-key="{{ item.key }}">
+              <div class="sidenav__item-info">
+                <div class="sidenav__item-img">
+                  <a href="{{ item.url }}">
+                    {% if item.image %}
+                      <img
+                        src="{{ item.image | img_url: 'small' }}"
+                        alt="{{ item.title | escape }}"
+                        class="">
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag: 'h-full object-cover rounded' }}
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="sidenav__item-info-wrapper">
+                  <div class="sidenav__item-title">
+                    <a href="{{ item.url }}">
+                      {{ item.product.title | truncatewords: 4 }}
+                    </a>
+                  </div>
+                  <div class="sidenav__item-price">{{ item.line_price | money }}</div>
+                  <div class="sidenav__item-counter h-[20px] flex">
+                    <button
+                      type="submit"
+                      name="update"
+                      {% if item.quantity == 1 %}
+                      class="sidenav__item-counter-minus"
+                      style="opacity: 0.3; cursor: not-allowed;"
+                      {% else %}
+                      class="sidenav__item-counter-minus"
+                      {% endif %}
+                      {% if item.quantity == 1 %}
+                      disabled
+                      {% endif %}>
+                      -
+                    </button>
+                    <input
+                      class="sidenav__item-number"
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      id="updates_{{ forloop.index }}">
+                    <button
+                      type="submit"
+                      name="update"
+                      class="sidenav__item-counter-plus">
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="presidenav__item-delete">
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="sidenav__item-delete">
+                  {% render 'icon-delete' %}
+                </a>
+                <div class="sidenav-loader">
+                  {% render 'icon-cart-item-loader' %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="sidenav__footer">
+          <div class="sidenav__footer-total">
+            total
+          </div>
+          <div class="sidenav__footer-price">
+            {{ cart.total_price | money }}
+          </div>
+        </div>
+      {% else %}
+        <div class="sidenav__items">Your cart is empty</div>
+
+        <div class="sidenav__footer">
+          <div class="sidenav__footer-total">
+            total
+          </div>
+          <div class="sidenav__footer-price">
+            {{ cart.total_price | money }}
+          </div>
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Cart drawer"
+  }
+{% endschema %}

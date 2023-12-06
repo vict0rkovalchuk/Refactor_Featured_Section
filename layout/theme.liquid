@@ -16,9 +16,13 @@
   {{ content_for_header }}
     <!-- Header hook for plugins -->
     {{ 'application.css' | asset_url | stylesheet_tag }}
+    {{ 'cart.css' | asset_url | stylesheet_tag }}
     {{ 'application.js' | asset_url | script_tag }}
+
+    <script src="{{ 'cart.js' | asset_url }}" defer></script>
   </head>
   <body>
+    {% section 'cart-drawer' %}
     <main role="main">
       {{ content_for_layout }}
     </main>
