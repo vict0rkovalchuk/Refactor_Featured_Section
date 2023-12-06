@@ -1,8 +1,15 @@
 {
   "sections": {
     "template": {
-      "type": "featured-products"
+      "type": "featured-products",
+      "settings": {
+        "collection_list": [
+          "frontpage"
+        ]
+      }
     }
   },
-  "order": ["template"]
+  "order": [
+    "template"
+  ]
 }
