@@ -2,27 +2,41 @@
   <div class="container">
     <div class="featured__title">Featured Products</div>
     <div class="featured__cards">
-      <div class="featured__card">
-        <div class="featured__card-img"><img src="https://planimetria.com.ua/img/catalogue/bb/11/bb-1350a50cd0d86.jpg" alt="Product Image"></div>
-        <div class="featured__card-title">Eirini vase set</div>
-        <div class="featured__card-btn">Add to cart</div>
-      </div>
-      <div class="featured__card">
-        <div class="featured__card-img"><img src="https://master-keramika.com.ua/wp-content/uploads/2017/04/20201107_091339.jpg" alt="Product Image"></div>
-        <div class="featured__card-title">Eirini vase set</div>
-        <div class="featured__card-btn">Add to cart</div>
-      </div>
-      <div class="featured__card">
-        <div class="featured__card-img"><img src="https://i.pinimg.com/236x/f6/16/d0/f616d044c7937dde2e8ec2b4f3e6f79c.jpg" alt="Product Image"></div>
-        <div class="featured__card-title">Eirini vase set</div>
-        <div class="featured__card-btn">Add to cart</div>
-      </div>
-      <div class="featured__card">
-        <div class="featured__card-img"><img src="https://master-keramika.com.ua/wp-content/uploads/2017/04/20201107_091339.jpg" alt="Product Image"></div>
-        <div class="featured__card-title">Eirini vase set</div>
-        <div class="featured__card-btn">Add to cart</div>
-      </div>
 
+      {% for product in collections.all.products %}
+        {% for cartProduct in cart.items %}
+          {% if cartProduct.product_id != product.id %}
+            <div class="featured__card">
+              <div class="featured__card-img"><img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.featured_image.alt }}"></div>
+              <a href="{{ product.url }}" class="featured__card-title">{{ product.title }}</a>
+
+              <form method="post" action="/cart/add">
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ product.variants.first.id }}" />
+                <input
+                  min="1"
+                  type="hidden"
+                  id="quantity"
+                  name="quantity"
+                  value="1" />
+                <button type="submit" class="featured__card-btn">
+                  Add to cart
+                </button>
+              </form>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+      {% endfor %}
     </div>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Featured Products",
+    "settings": []
+  }
+{% endschema %}
