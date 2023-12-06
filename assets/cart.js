@@ -160,4 +160,4 @@ window.addEventListener('submit', async e => {
   }
 });
 
-openCartDrawer();
+// openCartDrawer();
