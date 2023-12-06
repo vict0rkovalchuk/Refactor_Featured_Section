@@ -40,12 +40,14 @@ async function updateFeaturedProductsSection() {
   const html = document.createElement('div');
   html.innerHTML = text;
 
-  const newBox = html.querySelector('#featured').innerHTML;
-  const oldBox = document.querySelector('#featured');
+  console.log(text);
 
-  oldBox.innerHTML = newBox;
+  // const newBox = html.querySelector('#featured').innerHTML;
+  // const oldBox = document.querySelector('#featured');
 
-  addCartDrawerListeners();
+  // oldBox.innerHTML = newBox;
+
+  // addCartDrawerListeners();
 }
 
 async function updateCartAJAX(key, qty = 0) {
@@ -109,8 +111,8 @@ function addCartDrawerListeners() {
 
       // Update cart
       const index = itemClosestParent.dataset.index;
-      updateCartDrawer(index);
-      updateFeaturedProductsSection();
+      await updateCartDrawer(index);
+      await updateFeaturedProductsSection();
     });
   });
 

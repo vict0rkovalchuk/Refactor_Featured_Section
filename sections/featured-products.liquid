@@ -1,12 +1,9 @@
-{% comment %} {% if section.settings.collection %}
-{% endif %} {% endcomment %}
-
 <div id="featured" class="featured">
   <div class="container">
     <div class="featured__title">Featured Products</div>
     <div class="featured__cards">
       {% if cart.items.size > 0 %}
-        {% for product in section.settings.collection.products %}
+        {% for product in collections.all.products %}
           {% for cartProduct in cart.items %}
             {% if cartProduct.product_id != product.id %}
               {% render 'product-card'
@@ -15,11 +12,9 @@
           {% endfor %}
         {% endfor %}
       {% else %}
-        {% for product in section.settings.collection.products %}
-          {% if cartProduct.product_id != product.id %}
-            {% render 'product-card'
-              , product: product %}
-          {% endif %}
+        {% for product in collections.all.products %}
+          {% render 'product-card'
+            , product: product %}
         {% endfor %}
       {% endif %}
 
