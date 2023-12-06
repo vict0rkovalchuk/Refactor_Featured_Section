@@ -40,8 +40,6 @@ async function updateFeaturedProductsSection() {
   const html = document.createElement('div');
   html.innerHTML = text;
 
-  console.log(text);
-
   const newBox = html.querySelector('#featured').innerHTML;
   const oldBox = document.querySelector('#featured');
 
