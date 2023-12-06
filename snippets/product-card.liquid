@@ -1,0 +1,20 @@
+<div class="featured__card">
+  <div class="featured__card-img"><img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.featured_image.alt }}"></div>
+  <a href="{{ product.url }}" class="featured__card-title">{{ product.title }}</a>
+
+  <form method="post" action="/cart/add">
+    <input
+      type="hidden"
+      name="id"
+      value="{{ product.variants.first.id }}" />
+    <input
+      min="1"
+      type="hidden"
+      id="quantity"
+      name="quantity"
+      value="1" />
+    <button type="submit" class="featured__card-btn">
+      Add to cart
+    </button>
+  </form>
+</div>
