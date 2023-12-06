@@ -3,9 +3,7 @@
     "template": {
       "type": "featured-products",
       "settings": {
-        "collection_list": [
-          "frontpage"
-        ]
+        "collection": "featured-products"
       }
     }
   },
