@@ -23,7 +23,25 @@
   transition-duration: 0.7s;
   color: #fcf7e6;
   padding: 12px 10px 0 10px;
-  width: 100%;
+  width: 445px;
+}
+
+@media (max-width: 768px) {
+  #sideCart {
+    width: 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  #sideCart {
+    width: 445px;
+  }
+}
+
+@media (max-width: 576px) {
+  #sideCart {
+    width: 100%;
+  }
 }
 
 .sidenav__header {
@@ -151,31 +169,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  font-weight: bold;
   border: none;
   color: white;
   background: transparent;
+  cursor: pointer;
 }
 
 .sidenav__item-number {
   color: #fcf7e6;
   height: 20px;
-  width: 20px;
+  width: 25px;
   display: block;
   background-color: #111;
   text-align: center;
   pointer-events: none;
   cursor: not-allowed;
   border: none;
+  font-weight: bold;
 }
 
 .sidenav__item-counter-plus {
+  cursor: pointer;
   height: 20px;
   width: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  font-weight: bold;
   border: none;
   color: white;
   background: transparent;

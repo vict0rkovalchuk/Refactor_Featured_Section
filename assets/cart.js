@@ -111,9 +111,9 @@ function addCartDrawerListeners() {
       e.stopPropagation();
     });
 
-  // document.querySelector('.sidenav-overlay').addEventListener('click', () => {
-  //   closeCartDrawer();
-  // });
+  document.querySelector('.sidenav-overlay').addEventListener('click', () => {
+    closeCartDrawer();
+  });
 }
 
 addCartDrawerListeners();
