@@ -42,12 +42,12 @@ async function updateFeaturedProductsSection() {
 
   console.log(text);
 
-  // const newBox = html.querySelector('#featured').innerHTML;
-  // const oldBox = document.querySelector('#featured');
+  const newBox = html.querySelector('#featured').innerHTML;
+  const oldBox = document.querySelector('#featured');
 
-  // oldBox.innerHTML = newBox;
+  oldBox.innerHTML = newBox;
 
-  // addCartDrawerListeners();
+  addCartDrawerListeners();
 }
 
 async function updateCartAJAX(key, qty = 0) {
@@ -160,4 +160,4 @@ window.addEventListener('submit', async e => {
   }
 });
 
-// openCartDrawer();
+openCartDrawer();
